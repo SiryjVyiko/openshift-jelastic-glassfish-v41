@@ -10,7 +10,7 @@ Cartridge-Vendor: 'Jelastic'
 Categories:
   - service
   - embedded
-Source-Url: https://github.com/jelastic-public-cartridges/openshift-jelastic-glassfish-v41.git
+Source-Url: https://github.com/xzkutor/openshift-jelastic-glassfish-v41.git
 Website: http://jelastic.com/
 Help-Topics:
   "Developer Center": https://jelastic.com
@@ -44,7 +44,7 @@ Endpoints:
     Private-Port:      8009
   - Private-IP-Name:   APP_HTTP_HOST
     Private-Port-Name: APP_HTTP_PORT
-    Private-Port:      8080
+    Private-Port:      80
   - Private-IP-Name:   APP_HTTPS_HOST
     Private-Port-Name: APP_HTTPS_PORT
-    Private-Port:      8443
+    Private-Port:      443
