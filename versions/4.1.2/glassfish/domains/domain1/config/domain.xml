@@ -96,7 +96,7 @@
       
       <http-service>
         <access-log/>
-        <virtual-server id="server" network-listeners="http-listener-1,http-listener-2"/>
+        <virtual-server id="server" network-listeners="http-listener-1,http-listener-2,http-listener-3"/>
         <virtual-server id="__asadmin" network-listeners="admin-listener"/>
       </http-service>
       <iiop-service>
@@ -245,6 +245,11 @@
               <file-cache enabled="false"></file-cache>
             </http>
           </protocol>
+	  <protocol name="http-listener-3">
+            <http default-virtual-server="server" max-connections="250">
+              <file-cache enabled="false"></file-cache>
+            </http>
+          </protocol>
           <protocol security-enabled="true" name="http-listener-2">
             <http default-virtual-server="server" max-connections="250">
               <file-cache enabled="false"></file-cache>
@@ -261,7 +266,7 @@
               <file-cache></file-cache>
             </http>
             <ssl client-auth="want" ssl3-enabled="true" classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
-          </protocol>
+          </protoco3>
           <protocol name="admin-http-redirect">
             <http-redirect secure="true"></http-redirect>
           </protocol>
@@ -275,6 +280,7 @@
         <network-listeners>
           <network-listener port="80" protocol="http-listener-1" transport="tcp" name="http-listener-1" thread-pool="http-thread-pool"></network-listener>
           <network-listener port="8181" protocol="http-listener-2" transport="tcp" name="http-listener-2" thread-pool="http-thread-pool"></network-listener>
+	  <network-listener port="8080" protocol="http-listener-3" transport="tcp" name="http-listener-3" thread-pool="http-thread-pool"></network-listener>
           <network-listener port="4848" protocol="admin-listener" transport="tcp" name="admin-listener" thread-pool="admin-thread-pool"></network-listener>
         </network-listeners>
         <transports>
@@ -297,7 +303,7 @@
      <config name="default-config" dynamic-reconfiguration-enabled="true" >
          <http-service>
              <access-log/>
-             <virtual-server id="server" network-listeners="http-listener-1, http-listener-2" >
+             <virtual-server id="server" network-listeners="http-listener-1, http-listener-2, http-listener-3" >
                  <property name="default-web-xml" value="${com.sun.aas.instanceRoot}/config/default-web.xml"/>
              </virtual-server>
              <virtual-server id="__asadmin" network-listeners="admin-listener" />
@@ -457,6 +463,11 @@
                          <file-cache />
                      </http>
                  </protocol>
+		 <protocol name="http-listener-3">
+                     <http default-virtual-server="server">
+                         <file-cache />
+                     </http>
+                 </protocol>
                  <protocol security-enabled="true" name="http-listener-2">
                      <http default-virtual-server="server">
                          <file-cache />
@@ -488,6 +499,7 @@
              <network-listeners>
                  <network-listener address="0.0.0.0" port="${HTTP_LISTENER_PORT}" protocol="http-listener-1" transport="tcp" name="http-listener-1" thread-pool="http-thread-pool" />
                  <network-listener address="0.0.0.0" port="${HTTP_SSL_LISTENER_PORT}" protocol="http-listener-2" transport="tcp" name="http-listener-2" thread-pool="http-thread-pool" />
+		 <network-listener address="0.0.0.0" port="${HTTP_LISTENER_PORT}" protocol="http-listener-3" transport="tcp" name="http-listener-3" thread-pool="http-thread-pool" />
                  <network-listener port="${ASADMIN_LISTENER_PORT}" protocol="pu-protocol" transport="tcp" name="admin-listener" thread-pool="http-thread-pool" />
              </network-listeners>
              <transports>
