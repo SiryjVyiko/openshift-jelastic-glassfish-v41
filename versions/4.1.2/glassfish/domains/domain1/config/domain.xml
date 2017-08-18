@@ -266,7 +266,7 @@
               <file-cache></file-cache>
             </http>
             <ssl client-auth="want" ssl3-enabled="true" classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
-          </protoco3>
+          </protocol>
           <protocol name="admin-http-redirect">
             <http-redirect secure="true"></http-redirect>
           </protocol>
